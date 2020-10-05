@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-0": {
+      "Charlie": "src/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.0"
+  }
+}
