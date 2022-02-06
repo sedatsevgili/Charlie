@@ -51,4 +51,14 @@ class Chromosome
         return new Chromosome($this->getData());
     }
 
+    public function getFirstIndex(): int
+    {
+        return min(array_keys($this->data));
+    }
+
+    public function getLastIndex(): int
+    {
+        return max(array_keys($this->data));
+    }
+
 }

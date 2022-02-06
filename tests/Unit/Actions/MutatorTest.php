@@ -1,10 +1,10 @@
 <?php
 
-namespace Unit\Mutator;
+namespace Unit\Actions;
 
 use Charlie\Chromosome\Chromosome;
 use Charlie\Gene\ByteGene;
-use Charlie\Mutation\Mutator;
+use Charlie\Actions\Mutator;
 use Charlie\Randomizer\MtRandomizer;
 use PHPUnit\Framework\TestCase;
 

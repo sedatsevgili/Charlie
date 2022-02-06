@@ -1,6 +1,6 @@
 <?php
 
-namespace Charlie\Mutation;
+namespace Charlie\Actions;
 
 use Charlie\Chromosome\Chromosome;
 
