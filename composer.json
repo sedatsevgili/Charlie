@@ -1,4 +1,6 @@
 {
+  "name": "sedatsevgili/charlie",
+  "description": "A simple genetic algorithm library",
   "autoload": {
     "psr-0": {
       "Charlie": "src/"
