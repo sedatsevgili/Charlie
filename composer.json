@@ -1,13 +1,14 @@
 {
   "name": "sedatsevgili/charlie",
   "description": "A simple genetic algorithm library",
+  "license": "MIT",
   "autoload": {
     "psr-0": {
       "Charlie": "src/"
     }
   },
   "require": {
-    "php": "8.1"
+    "php": "^8.1"
   },
   "require-dev": {
     "symfony/var-dumper": "^5.0",
