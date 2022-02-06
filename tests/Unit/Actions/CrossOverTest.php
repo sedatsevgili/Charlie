@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 class CrossOverTest extends TestCase
 {
 
-    public function testInvoke()
+    public function testRun()
     {
         // input1:              '111000'
         // input2:              '000010'
