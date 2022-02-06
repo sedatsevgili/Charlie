@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Charlie\Gene;
 
 class ByteGene implements GeneInterface
@@ -7,11 +9,11 @@ class ByteGene implements GeneInterface
 
     public function set($data): self
     {
-        $this->data = $data;
+        $this->data = (bool) $data;
         return $this;
     }
 
-    public function get()
+    public function get(): bool
     {
         return $this->data;
     }

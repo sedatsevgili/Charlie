@@ -1,19 +1,16 @@
 <?php
+declare(strict_types=1);
+
 namespace Charlie\Chromosome;
 
+use Charlie\Exceptions\GeneNotFoundException;
 use Charlie\Gene\GeneInterface;
 
 class Chromosome
 {
 
-    /**
-     * @var GeneInterface[]
-     */
-    private array $data;
-
-    public function __construct(array $data)
+    public function __construct(private array $data)
     {
-        $this->data = $data;
     }
 
     public function getData(): array
@@ -23,6 +20,9 @@ class Chromosome
 
     public function getGene(int $index): GeneInterface
     {
+        if (!isset($this->data[$index])) {
+            throw new GeneNotFoundException(sprintf('Gene not found in this index: %s', (string)$index));
+        }
         return $this->data[$index];
     }
 
@@ -32,18 +32,9 @@ class Chromosome
         return $this;
     }
 
-    public function mutate(): self
+    public function getLength(): int
     {
-        $rand = mt_rand(1, 100);
-        if ($rand < 5 || true) {
-            $length = count($this->data);
-            $mutatedGeneCount = mt_rand(1, $length);
-            $mutationStartIndex = mt_rand(0, $length - $mutatedGeneCount);
-            for ($i = $mutationStartIndex; $i <= $mutationStartIndex + $mutatedGeneCount - 1; $i++) {
-                $this->setGene($i, $this->getGene($i)->mutate());
-            }
-        }
-        return $this;
+        return count($this->data);
     }
 
     public function __toString(): string
@@ -53,6 +44,11 @@ class Chromosome
             $string .= $gene->__toString();
         }
         return $string;
+    }
+
+    public function clone(): self
+    {
+        return new Chromosome($this->getData());
     }
 
 }
