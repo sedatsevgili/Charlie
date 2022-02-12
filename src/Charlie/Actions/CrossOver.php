@@ -11,11 +11,10 @@ class CrossOver implements CrossOverInterface
 
     public function __construct(private RandomizerInterface $randomizer) {}
 
-    public function run(Chromosome $chromosome1, Chromosome $chromosome2): Chromosome
+    public function run(Chromosome $chromosome1, Chromosome $chromosome2): array
     {
         $length1 = $chromosome1->getLength();
         $length2 = $chromosome2->getLength();
-        $offspring = new Chromosome([]);
 
         if ($length1 !== $length2) {
             throw new DifferentLengthException(sprintf('Chromosomes to crossover have different lengths. Length of first chromosome: %d, length of second chromosome: %d', $length1, $length2));
@@ -25,15 +24,19 @@ class CrossOver implements CrossOverInterface
         $lastIndex = $chromosome1->getLastIndex();
 
         $crossOverPoint = $this->randomizer->getInteger($firstIndex, $lastIndex);
+        $child1 = new Chromosome([]);
+        $child2 = new Chromosome([]);
 
         for ($i = $firstIndex; $i < $crossOverPoint; $i++) {
-            $offspring->setGene($i, $chromosome1->getGene($i));
+            $child1->setGene($i, $chromosome1->getGene($i));
+            $child2->setGene($i, $chromosome2->getGene($i));
         }
         for ($i = $crossOverPoint; $i <= $lastIndex; $i++) {
-            $offspring->setGene($i, $chromosome2->getGene($i));
+            $child1->setGene($i, $chromosome2->getGene($i));
+            $child2->setGene($i, $chromosome1->getGene($i));
         }
 
-        return $offspring;
+        return [$child1, $child2];
     }
 
 }
