@@ -8,6 +8,8 @@ use Charlie\Population\PopulationInterface;
 interface SelectionInterface
 {
 
-    public function select(PopulationInterface $population, CalculatorInterface $calculator): array;
+    public function selectBest(PopulationInterface $population, CalculatorInterface $calculator): array;
+
+    public function selectWorst(PopulationInterface $population, CalculatorInterface $calculator): array;
 
 }

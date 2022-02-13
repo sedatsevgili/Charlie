@@ -14,29 +14,56 @@ class PairSelection implements SelectionInterface
      * @param CalculatorInterface $calculator
      * @return IndividualInterface[]
      */
-    public function select(PopulationInterface $population, CalculatorInterface $calculator): array
+    public function selectBest(PopulationInterface $population, CalculatorInterface $calculator): array
     {
         $fittest1 = PHP_INT_MIN;
-        $fittest1Individual = null;
         $fittest2 = PHP_INT_MIN;
-        $fittest2Individual = null;
+        $pair = [];
 
         foreach ($population->getIndividuals() as $individual) {
             $fit = $individual->calculateFitness($calculator);
             if ($fit > $fittest1) {
                 $fittest1 = $fit;
-                $fittest1Individual = $individual;
-                continue;
-            }
-
-            if ($fit > $fittest2) {
-                $fittest2 = $fit;
-                $fittest2Individual = $individual;
-                continue;
+                $pair[0] = $individual;
             }
         }
 
-        return [$fittest1Individual, $fittest2Individual];
+        foreach ($population->getIndividuals() as $individual) {
+            $fit = $individual->calculateFitness($calculator);
+            if ($fit > $fittest2 && $fit < $fittest1) {
+                $fittest2 = $fit;
+                $pair[1] = $individual;
+            }
+        }
+
+        return $pair;
+    }
+
+    public function selectWorst(PopulationInterface $population, CalculatorInterface $calculator): array
+    {
+        $min1 = PHP_INT_MAX;
+        $min2 = PHP_INT_MAX;
+        $pair = [];
+
+        foreach ($population->getIndividuals() as $individual) {
+            $fit = $individual->calculateFitness($calculator);
+
+            if ($fit < $min1) {
+                $min1 = $fit;
+                $pair[0] = $individual;
+            }
+        }
+
+        foreach ($population->getIndividuals() as $individual) {
+            $fit = $individual->calculateFitness($calculator);
+
+            if ($fit < $min2 && $fit > $min1) {
+                $min2 = $fit;
+                $pair[1] = $individual;
+            }
+        }
+
+        return $pair;
     }
 
 
