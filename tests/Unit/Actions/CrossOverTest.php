@@ -17,7 +17,7 @@ class CrossOverTest extends TestCase
         // input2:              '000010'
 
         // crossover point: 3
-        // expected output:     '111010'
+        // expected output:     '111010', '000000'
 
         $randomizer = $this->getMockBuilder(MtRandomizer::class)
             ->onlyMethods(['getInteger'])
@@ -49,9 +49,10 @@ class CrossOverTest extends TestCase
             (new ByteGene())->set(0),
         ]);
 
-        $offspring = $crossOver->run($chromosome1, $chromosome2);
+        $children = $crossOver->run($chromosome1, $chromosome2);
 
-        $this->assertEquals('111010', (string) $offspring);
+        $this->assertEquals('111010', (string) $children[0]);
+        $this->assertEquals('000000', (string) $children[1]);
     }
 
 }

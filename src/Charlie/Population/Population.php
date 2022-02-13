@@ -2,12 +2,20 @@
 
 namespace Charlie\Population;
 
-class Population
+use Charlie\Individual\IndividualInterface;
+
+class Population implements PopulationInterface
 {
 
-    public function __construct(private array $chromosomes) {}
+    /** @var IndividualInterface[] $individuals */
+    public function __construct(private array $individuals) {
 
+    }
 
+    public function getIndividuals(): array
+    {
+        return $this->individuals;
+    }
 
 
 }
