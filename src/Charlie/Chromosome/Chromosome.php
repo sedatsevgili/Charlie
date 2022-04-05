@@ -9,6 +9,7 @@ use Charlie\Gene\GeneInterface;
 class Chromosome
 {
 
+    /** @var GeneInterface[] */
     public function __construct(private array $data)
     {
     }
@@ -59,6 +60,22 @@ class Chromosome
     public function getLastIndex(): int
     {
         return max(array_keys($this->data));
+    }
+
+    public function isEqual(Chromosome $chromosome): bool
+    {
+        if ($this->getLength() !== $chromosome->getLength()) {
+            return false;
+        }
+
+        foreach ($this->data as $index => $gene) {
+            if (! $gene->isEqual($chromosome->getGene($index))) {
+                return false;
+            }
+        }
+
+        return true;
+
     }
 
 }

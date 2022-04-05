@@ -29,5 +29,10 @@ class ByteGene implements GeneInterface
         return $this->data ? '1' : '0';
     }
 
+    public function isEqual(GeneInterface $gene): bool
+    {
+        return $this->data === $gene->get();
+    }
+
 
 }

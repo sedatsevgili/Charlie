@@ -40,6 +40,29 @@ class ChromosomeTest extends TestCase
         $chromosome->getGene(2);
     }
 
+    public function testIsEqual()
+    {
+        $chromosome1 = new Chromosome([
+            (new ByteGene())->set(1),
+            (new ByteGene())->set(0),
+        ]);
+
+        $chromosome2 = new Chromosome([
+            (new ByteGene())->set(1),
+            (new ByteGene())->set(0),
+        ]);
+
+        $this->assertTrue($chromosome1->isEqual($chromosome2));
+        $this->assertTrue($chromosome2->isEqual($chromosome1));
+
+        $chromosome3 = new Chromosome([
+            (new ByteGene())->set(0),
+            (new ByteGene())->set(0),
+        ]);
+
+        $this->assertFalse($chromosome1->isEqual($chromosome3));
+        $this->assertFalse($chromosome3->isEqual($chromosome1));
+    }
 
 
 }

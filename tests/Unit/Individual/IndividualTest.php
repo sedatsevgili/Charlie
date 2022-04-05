@@ -29,4 +29,29 @@ class IndividualTest extends TestCase
         $this->assertEquals(3, $individual->calculateFitness($calculator));
     }
 
+    public function testIsEqual()
+    {
+        $individual1 = new Individual(new Chromosome([
+            (new ByteGene())->set(0),
+            (new ByteGene())->set(1),
+        ]));
+
+        $individual2 = new Individual(new Chromosome([
+            (new ByteGene())->set(0),
+            (new ByteGene())->set(1),
+        ]));
+
+        $individual3 = new Individual(new Chromosome([
+            (new ByteGene())->set(0),
+            (new ByteGene())->set(0)
+        ]));
+
+        $this->assertTrue($individual1->isEqual($individual2));
+        $this->assertTrue($individual2->isEqual($individual1));
+
+        $this->assertFalse($individual3->isEqual($individual1));
+        $this->assertFalse($individual3->isEqual($individual2));
+
+    }
+
 }

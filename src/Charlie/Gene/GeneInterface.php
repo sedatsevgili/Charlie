@@ -12,4 +12,6 @@ interface GeneInterface
     public function mutate(): self;
 
     public function __toString(): string;
+
+    public function isEqual(GeneInterface $gene): bool;
 }
