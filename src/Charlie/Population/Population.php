@@ -55,5 +55,9 @@ class Population implements PopulationInterface
         }
     }
 
+    public function __toString()
+    {
+        return implode(PHP_EOL, $this->individuals);
+    }
 
 }

@@ -126,4 +126,24 @@ class PopulationTest extends TestCase
 
     }
 
+    public function testToString()
+    {
+        $individuals = [
+            new Individual(new Chromosome([
+                (new ByteGene())->set(1),
+                (new ByteGene())->set(0),
+                (new ByteGene())->set(1),
+            ])),
+
+            new Individual(new Chromosome([
+                (new ByteGene())->set(0),
+                (new ByteGene())->set(0),
+                (new ByteGene())->set(0),
+            ])),
+        ];
+
+        $population = new Population($individuals);
+        $this->assertEquals('101' . PHP_EOL . '000', (string) $population);
+    }
+
 }

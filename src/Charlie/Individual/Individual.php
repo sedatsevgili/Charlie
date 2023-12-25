@@ -9,7 +9,7 @@ use Charlie\Fitness\CalculatorInterface;
 class Individual implements IndividualInterface
 {
 
-    public function __construct(public Chromosome $chromosome) {}
+    public function __construct(private Chromosome $chromosome) {}
 
     public function calculateFitness(CalculatorInterface $calculator): int
     {
@@ -26,5 +26,14 @@ class Individual implements IndividualInterface
         $this->chromosome = $mutator->mutate($this->chromosome);
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->chromosome;
+    }
+
+    public function getChromosome(): Chromosome
+    {
+        return $this->chromosome;
+    }
 
 }

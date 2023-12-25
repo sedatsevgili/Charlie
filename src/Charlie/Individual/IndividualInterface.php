@@ -3,6 +3,7 @@
 namespace Charlie\Individual;
 
 use Charlie\Actions\MutatorInterface;
+use Charlie\Chromosome\Chromosome;
 use Charlie\Fitness\CalculatorInterface;
 
 interface IndividualInterface
@@ -13,5 +14,7 @@ interface IndividualInterface
     public function isEqual(IndividualInterface $individual): bool;
 
     public function mutate(MutatorInterface $mutator): void;
+
+    public function getChromosome(): Chromosome;
 
 }

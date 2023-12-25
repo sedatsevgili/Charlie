@@ -9,7 +9,7 @@ use Charlie\Gene\GeneInterface;
 class Chromosome
 {
 
-    /** @var GeneInterface[] */
+    /** @var GeneInterface[] $data */
     public function __construct(private array $data)
     {
     }
@@ -76,6 +76,11 @@ class Chromosome
 
         return true;
 
+    }
+
+    public function copyFrom(Chromosome $chromosome): void
+    {
+        $this->data = $chromosome->getData();
     }
 
 }

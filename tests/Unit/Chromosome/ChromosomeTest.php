@@ -64,5 +64,22 @@ class ChromosomeTest extends TestCase
         $this->assertFalse($chromosome3->isEqual($chromosome1));
     }
 
+    public function testCopyFrom()
+    {
+        $chromosome1 = new Chromosome([
+            (new ByteGene())->set(1),
+            (new ByteGene())->set(0),
+        ]);
+
+        $chromosome2 = new Chromosome([
+            (new ByteGene())->set(0),
+            (new ByteGene())->set(1),
+        ]);
+
+        $chromosome1->copyFrom($chromosome2);
+
+        $this->assertTrue($chromosome1->isEqual($chromosome2));
+        $this->assertTrue($chromosome2->isEqual($chromosome1));
+    }
 
 }
