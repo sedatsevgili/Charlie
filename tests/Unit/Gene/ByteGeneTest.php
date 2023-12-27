@@ -33,4 +33,22 @@ class ByteGeneTest extends TestCase
         $this->assertEquals(true, $gene->get());
     }
 
+    public function testIsEqual()
+    {
+        $gene1 = new ByteGene();
+        $gene1->set(true);
+
+        $gene2 = new ByteGene();
+        $gene2->set(true);
+
+        $gene3 = new ByteGene();
+        $gene3->set(false);
+
+        $this->assertTrue($gene1->isEqual($gene2));
+        $this->assertTrue($gene2->isEqual($gene1));
+
+        $this->assertFalse($gene1->isEqual($gene3));
+        $this->assertFalse($gene3->isEqual($gene1));
+    }
+
 }

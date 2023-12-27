@@ -8,7 +8,7 @@ use Charlie\Randomizer\RandomizerInterface;
 class Mutator implements MutatorInterface
 {
 
-    public function __construct(private RandomizerInterface $randomizer)
+    public function __construct(private readonly RandomizerInterface $randomizer)
     {
     }
 

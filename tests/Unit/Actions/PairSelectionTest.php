@@ -90,8 +90,8 @@ class PairSelectionTest extends TestCase
         $selection = new PairSelection();
 
         $pair = $selection->selectBest($population, $calculator);
-        $this->assertEquals('111110', (string)$pair[0]->chromosome);
-        $this->assertEquals('110011', (string)$pair[1]->chromosome);
+        $this->assertEquals('111110', (string)$pair->getIndividual1()->getChromosome());
+        $this->assertEquals('110011', (string)$pair->getIndividual2()->getChromosome());
     }
 
 
@@ -172,8 +172,8 @@ class PairSelectionTest extends TestCase
         $selection = new PairSelection();
 
         $pair = $selection->selectWorst($population, $calculator);
-        $this->assertEquals('000000', (string)$pair[0]->chromosome);
-        $this->assertEquals('000100', (string)$pair[1]->chromosome);
+        $this->assertEquals('000000', (string)$pair->getIndividual1()->getChromosome());
+        $this->assertEquals('000100', (string)$pair->getIndividual2()->getChromosome());
     }
 
 
