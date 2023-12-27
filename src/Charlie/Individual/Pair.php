@@ -22,4 +22,9 @@ final class Pair
         return $this->individual1 . ' ' . $this->individual2;
     }
 
+    public function toArray(): array
+    {
+        return [$this->individual1, $this->individual2];
+    }
+
 }

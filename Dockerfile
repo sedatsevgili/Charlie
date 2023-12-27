@@ -18,5 +18,4 @@ COPY --chown=appuser:appuser . .
 RUN composer install
 
 # Command to run the application
-# CMD [ "php", "./run.php" ]
-# CMD [ "composer",  "run-script", "test"]
+CMD [ "php", "./run.php" ]

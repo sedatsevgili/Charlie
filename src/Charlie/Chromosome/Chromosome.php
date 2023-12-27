@@ -83,4 +83,9 @@ class Chromosome
         $this->data = $chromosome->getData();
     }
 
+    public function copyGeneFrom(Chromosome $chromosome, int $index): void
+    {
+        $this->data[$index] = clone $chromosome->getGene($index);
+    }
+
 }

@@ -4,6 +4,8 @@ namespace Charlie\Actions;
 
 use Charlie\Chromosome\Chromosome;
 use Charlie\Exceptions\DifferentLengthException;
+use Charlie\Individual\Individual;
+use Charlie\Individual\IndividualInterface;
 use Charlie\Randomizer\RandomizerInterface;
 
 class CrossOver implements CrossOverInterface
@@ -24,19 +26,32 @@ class CrossOver implements CrossOverInterface
         $lastIndex = $chromosome1->getLastIndex();
 
         $crossOverPoint = $this->randomizer->getInteger($firstIndex, $lastIndex);
-        $child1 = new Chromosome([]);
-        $child2 = new Chromosome([]);
+        $sequence1 = [];
+        $sequence2 = [];
 
         for ($i = $firstIndex; $i < $crossOverPoint; $i++) {
-            $child1->setGene($i, $chromosome1->getGene($i));
-            $child2->setGene($i, $chromosome2->getGene($i));
+            $sequence1[$i] = clone $chromosome1->getGene($i);
+            $sequence2[$i] = clone $chromosome2->getGene($i);
         }
         for ($i = $crossOverPoint; $i <= $lastIndex; $i++) {
-            $child1->setGene($i, $chromosome2->getGene($i));
-            $child2->setGene($i, $chromosome1->getGene($i));
+            $sequence1[$i] = clone $chromosome2->getGene($i);
+            $sequence2[$i] = clone $chromosome1->getGene($i);
         }
+
+        $child1 = new Chromosome($sequence1);
+        $child2 = new Chromosome($sequence2);
 
         return [$child1, $child2];
     }
+
+    public function runForIndividuals(IndividualInterface $individual1, IndividualInterface $individual2): array
+    {
+        $chromosomes = $this->run($individual1->getChromosome(), $individual2->getChromosome());
+        $offspring1 = new Individual($chromosomes[0]);
+        $offspring2 = new Individual($chromosomes[1]);
+
+        return [$offspring1, $offspring2];
+    }
+
 
 }
