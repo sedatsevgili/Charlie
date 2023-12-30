@@ -18,7 +18,7 @@ class Individual implements IndividualInterface
 
     public function isEqual(IndividualInterface $individual): bool
     {
-        return $this->chromosome->isEqual($individual->chromosome);
+        return $this->chromosome->isEqual($individual->getChromosome());
     }
 
     public function mutate(MutatorInterface $mutator): void

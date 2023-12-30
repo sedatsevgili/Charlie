@@ -9,11 +9,14 @@ use Charlie\Gene\GeneInterface;
 class Chromosome
 {
 
-    /** @var GeneInterface[] $data */
+    /** @param GeneInterface[] $data */
     public function __construct(private array $data)
     {
     }
 
+    /**
+     * @return GeneInterface[]
+     */
     public function getData(): array
     {
         return $this->data;

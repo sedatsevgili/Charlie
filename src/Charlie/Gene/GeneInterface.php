@@ -5,9 +5,9 @@ namespace Charlie\Gene;
 
 interface GeneInterface
 {
-    public function set($data): self;
+    public function set(mixed $data): self;
 
-    public function get();
+    public function get(): mixed;
 
     public function mutate(): self;
 

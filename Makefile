@@ -9,3 +9,6 @@ build:
 
 logs:
 	docker-compose logs -f
+
+bash:
+	docker-compose exec app bash

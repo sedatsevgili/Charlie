@@ -13,6 +13,13 @@ class CrossOver implements CrossOverInterface
 
     public function __construct(private RandomizerInterface $randomizer) {}
 
+    /**
+     * @param Chromosome $chromosome1
+     * @param Chromosome $chromosome2
+     * @return Chromosome[]
+     * @throws DifferentLengthException
+     * @throws \Charlie\Exceptions\GeneNotFoundException
+     */
     public function run(Chromosome $chromosome1, Chromosome $chromosome2): array
     {
         $length1 = $chromosome1->getLength();
@@ -44,6 +51,13 @@ class CrossOver implements CrossOverInterface
         return [$child1, $child2];
     }
 
+    /**
+     * @param IndividualInterface $individual1
+     * @param IndividualInterface $individual2
+     * @return Individual[]
+     * @throws DifferentLengthException
+     * @throws \Charlie\Exceptions\GeneNotFoundException
+     */
     public function runForIndividuals(IndividualInterface $individual1, IndividualInterface $individual2): array
     {
         $chromosomes = $this->run($individual1->getChromosome(), $individual2->getChromosome());

@@ -17,4 +17,6 @@ interface IndividualInterface
 
     public function getChromosome(): Chromosome;
 
+    public function __toString(): string;
+
 }

@@ -7,7 +7,11 @@ class ByteGene implements GeneInterface
 {
     private bool $data = false;
 
-    public function set($data): self
+    /**
+     * @param mixed $data
+     * @return $this
+     */
+    public function set(mixed $data): self
     {
         $this->data = (bool) $data;
         return $this;

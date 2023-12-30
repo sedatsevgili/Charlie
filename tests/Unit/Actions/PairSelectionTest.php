@@ -8,6 +8,7 @@ use Charlie\Fitness\DummySumCalculator;
 use Charlie\Gene\ByteGene;
 use Charlie\Individual\Individual;
 use Charlie\Population\Population;
+use Charlie\Util\StringUtilities;
 use PHPUnit\Framework\TestCase;
 
 class PairSelectionTest extends TestCase
@@ -114,59 +115,12 @@ class PairSelectionTest extends TestCase
 
         $calculator = new DummySumCalculator();
         $population = new Population([
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-            ])),
+            StringUtilities::createIndividualWithByteGenes('000100'),
+            StringUtilities::createIndividualWithByteGenes('001100'),
+            StringUtilities::createIndividualWithByteGenes('100011'),
+            StringUtilities::createIndividualWithByteGenes('110100'),
+            StringUtilities::createIndividualWithByteGenes('000000'),
+            StringUtilities::createIndividualWithByteGenes('111110'),
         ]);
 
         $selection = new PairSelection();
