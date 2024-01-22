@@ -12,10 +12,12 @@
   },
   "require-dev": {
     "symfony/var-dumper": "^5.0",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^1.10"
   },
   "scripts": {
-    "test": "phpunit --bootstrap vendor/autoload.php tests/"
+    "test": "phpunit --bootstrap vendor/autoload.php tests/",
+    "phpstan": "phpstan analyse src/ --level 8"
   },
   "config": {
     "platform": {

@@ -9,11 +9,14 @@ use Charlie\Gene\GeneInterface;
 class Chromosome
 {
 
-    /** @var GeneInterface[] $data */
+    /** @param GeneInterface[] $data */
     public function __construct(private array $data)
     {
     }
 
+    /**
+     * @return GeneInterface[]
+     */
     public function getData(): array
     {
         return $this->data;
@@ -40,11 +43,7 @@ class Chromosome
 
     public function __toString(): string
     {
-        $string = '';
-        foreach ($this->data as $gene) {
-            $string .= $gene->__toString();
-        }
-        return $string;
+        return implode('|', array_map(fn(GeneInterface $gene) => (string)$gene, $this->data));
     }
 
     public function clone(): self

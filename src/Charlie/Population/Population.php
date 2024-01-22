@@ -9,11 +9,14 @@ use Charlie\Individual\IndividualInterface;
 class Population implements PopulationInterface
 {
 
-    /** @var IndividualInterface[] $individuals */
+    /** @param IndividualInterface[] $individuals */
     public function __construct(private array $individuals) {
 
     }
 
+    /**
+     * @return IndividualInterface[]
+     */
     public function getIndividuals(): array
     {
         return $this->individuals;
@@ -24,6 +27,10 @@ class Population implements PopulationInterface
         return array_reduce($this->individuals, fn(int $carry, IndividualInterface $individual) => $individual->calculateFitness($calculator) + $carry, 0);
     }
 
+    /**
+     * @param IndividualInterface[] $individualsToSearch
+     * @param IndividualInterface[] $individualsToReplace
+     */
     public function replaceIndividuals(array $individualsToSearch, array $individualsToReplace): void
     {
         for ($i = 0; $i < count($individualsToSearch); $i++) {
@@ -55,9 +62,9 @@ class Population implements PopulationInterface
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return implode(PHP_EOL, $this->individuals);
+        return implode(PHP_EOL . PHP_EOL, array_map(fn(IndividualInterface $individual) => (string) $individual, $this->individuals));
     }
 
 }

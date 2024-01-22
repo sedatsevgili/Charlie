@@ -1,5 +1,12 @@
 # Use an official PHP runtime as a parent image
-FROM php:8.1-cli
+FROM php:8.1-fpm
+
+RUN apt-get update && apt-get install -y \
+    zip \
+    libzip-dev \
+    git \
+    && docker-php-ext-install \
+    zip
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -16,6 +23,3 @@ COPY --chown=appuser:appuser . .
 
 # Install dependencies
 RUN composer install
-
-# Command to run the application
-CMD [ "php", "./run.php" ]

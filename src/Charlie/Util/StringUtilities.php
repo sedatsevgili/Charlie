@@ -27,7 +27,7 @@ class StringUtilities
 
     public static function createChromosomeWithByteGenes(string $data): Chromosome
     {
-        $byteGenes = array_map('self::createByteGene', str_split($data));
+        $byteGenes = array_map(fn($data) => self::createByteGene($data), str_split($data));
         return new Chromosome($byteGenes);
     }
 
@@ -36,9 +36,12 @@ class StringUtilities
         return new Individual(self::createChromosomeWithByteGenes($data));
     }
 
+    /**
+     * @param array<string> $pool
+     */
     public static function createPopulationWithByteGenes(array $pool): Population
     {
-        $individuals = array_map('self::createIndividualWithByteGenes', $pool);
+        $individuals = array_map(fn($data) => self::createIndividualWithByteGenes($data), $pool);
         return new Population($individuals);
     }
 

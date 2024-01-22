@@ -8,6 +8,7 @@ use Charlie\Fitness\DummySumCalculator;
 use Charlie\Gene\ByteGene;
 use Charlie\Individual\Individual;
 use Charlie\Population\Population;
+use Charlie\Util\StringUtilities;
 use PHPUnit\Framework\TestCase;
 
 class PairSelectionTest extends TestCase
@@ -90,8 +91,8 @@ class PairSelectionTest extends TestCase
         $selection = new PairSelection();
 
         $pair = $selection->selectBest($population, $calculator);
-        $this->assertEquals('111110', (string)$pair->getIndividual1()->getChromosome());
-        $this->assertEquals('110011', (string)$pair->getIndividual2()->getChromosome());
+        $this->assertEquals('1|1|1|1|1|0', (string)$pair->getIndividual1()->getChromosome());
+        $this->assertEquals('1|1|0|0|1|1', (string)$pair->getIndividual2()->getChromosome());
     }
 
 
@@ -114,66 +115,19 @@ class PairSelectionTest extends TestCase
 
         $calculator = new DummySumCalculator();
         $population = new Population([
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-                (new ByteGene())->set(0),
-            ])),
-
-            new Individual(new Chromosome([
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(1),
-                (new ByteGene())->set(0),
-            ])),
+            StringUtilities::createIndividualWithByteGenes('000100'),
+            StringUtilities::createIndividualWithByteGenes('001100'),
+            StringUtilities::createIndividualWithByteGenes('100011'),
+            StringUtilities::createIndividualWithByteGenes('110100'),
+            StringUtilities::createIndividualWithByteGenes('000000'),
+            StringUtilities::createIndividualWithByteGenes('111110'),
         ]);
 
         $selection = new PairSelection();
 
         $pair = $selection->selectWorst($population, $calculator);
-        $this->assertEquals('000000', (string)$pair->getIndividual1()->getChromosome());
-        $this->assertEquals('000100', (string)$pair->getIndividual2()->getChromosome());
+        $this->assertEquals('0|0|0|0|0|0', (string)$pair->getIndividual1()->getChromosome());
+        $this->assertEquals('0|0|0|1|0|0', (string)$pair->getIndividual2()->getChromosome());
     }
 
 
