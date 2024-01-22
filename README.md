@@ -6,7 +6,7 @@ This project is a simple library that allows PHP developers to easily build thei
 ## Installation
 To install this library, you can use composer:
 ```
-composer require charlieproject/genetic-algorithm
+composer require sedatsevgili/charlie
 ```
 
 ## Usage
