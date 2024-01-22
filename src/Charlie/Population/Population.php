@@ -64,7 +64,7 @@ class Population implements PopulationInterface
 
     public function __toString(): string
     {
-        return implode(PHP_EOL, array_map(fn(IndividualInterface $individual) => (string) $individual, $this->individuals));
+        return implode(PHP_EOL . PHP_EOL, array_map(fn(IndividualInterface $individual) => (string) $individual, $this->individuals));
     }
 
 }

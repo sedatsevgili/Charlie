@@ -82,12 +82,9 @@ class Problem
     {
         $previousFitnessOfPopulation = PHP_INT_MIN;
         for ($i = 0; $i < $this->maxEvolveCount; $i++) {
-            $this->log(sprintf("Generation: %d", $i));
             $fitness = $this->population->calculateFitness($this->calculator);
-            $this->log(sprintf("Fitness: %d", $fitness));
 
             if ($fitness < $previousFitnessOfPopulation) {
-                $this->log(sprintf("Fitness: %d, previous fitness: %d", $fitness, $previousFitnessOfPopulation));
                 return;
             }
 
@@ -100,15 +97,7 @@ class Problem
             $previousFitnessOfPopulation = $this->population->calculateFitness($this->calculator);
 
             $this->population->mutate($this->mutator);
-
-            $this->log((string) $this->population);
-            $this->log("====================================");
         }
-    }
-
-    private function log(string $message): void
-    {
-        echo $message . PHP_EOL;
     }
 
 }

@@ -6,6 +6,9 @@ class KnapsackFitnessFunction implements \Charlie\Fitness\CalculatorInterface
     public function calculate(\Charlie\Chromosome\Chromosome $chromosome): int
     {
         $items = $chromosome->getData();
+        $items = array_filter($items, function (Item $item) {
+            return $item->isPicked();
+        });
         $totalValue = array_reduce($items, function ($carry, $item) {
             return $carry + $item->getValue();
         }, 0);

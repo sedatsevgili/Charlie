@@ -3,7 +3,10 @@ version: '3.8'
 services:
   app:
     build: .
+    working_dir: /usr/src/app
     volumes:
-      - .:/usr/src/app
+      - type: bind
+        source: .
+        target: /usr/src/app
     ports:
       - "8000:8000"

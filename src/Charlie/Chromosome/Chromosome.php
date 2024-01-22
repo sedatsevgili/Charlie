@@ -43,11 +43,7 @@ class Chromosome
 
     public function __toString(): string
     {
-        $string = '';
-        foreach ($this->data as $gene) {
-            $string .= $gene->__toString();
-        }
-        return $string;
+        return implode('|', array_map(fn(GeneInterface $gene) => (string)$gene, $this->data));
     }
 
     public function clone(): self

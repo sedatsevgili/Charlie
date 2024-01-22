@@ -143,7 +143,7 @@ class PopulationTest extends TestCase
         ];
 
         $population = new Population($individuals);
-        $this->assertEquals('101' . PHP_EOL . '000', (string) $population);
+        $this->assertEquals('1|0|1' . PHP_EOL . PHP_EOL . '0|0|0', (string) $population);
     }
 
 }

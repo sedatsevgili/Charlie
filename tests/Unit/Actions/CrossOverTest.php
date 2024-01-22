@@ -51,8 +51,8 @@ class CrossOverTest extends TestCase
 
         $children = $crossOver->run($chromosome1, $chromosome2);
 
-        $this->assertEquals('111010', (string) $children[0]);
-        $this->assertEquals('000000', (string) $children[1]);
+        $this->assertEquals('1|1|1|0|1|0', (string) $children[0]);
+        $this->assertEquals('0|0|0|0|0|0', (string) $children[1]);
     }
 
 }

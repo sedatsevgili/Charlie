@@ -3,13 +3,13 @@
 class Item implements \Charlie\Gene\GeneInterface
 {
 
-    private $weight;
-    private $value;
+    private bool $picked;
 
-    public function __construct(int $weight, int $value)
+    public function __construct(private int $weight, private int $value)
     {
         $this->weight = $weight;
         $this->value = $value;
+        $this->picked = false;
     }
 
     public function getWeight(): int
@@ -34,6 +34,11 @@ class Item implements \Charlie\Gene\GeneInterface
         return $this;
     }
 
+    public function isPicked(): bool
+    {
+        return $this->picked;
+    }
+
     public function set(mixed $data): \Charlie\Gene\GeneInterface
     {
         $this->setValue($data['value'] ?? 0);
@@ -51,14 +56,13 @@ class Item implements \Charlie\Gene\GeneInterface
 
     public function mutate(): \Charlie\Gene\GeneInterface
     {
-        $this->setValue($this->getValue() + mt_rand(-1, 1));
-        $this->setWeight($this->getWeight() + mt_rand(-1, 1));
+        $this->picked = !$this->picked;
         return $this;
     }
 
     public function __toString(): string
     {
-        return sprintf('Item: %s, %s', $this->getValue(), $this->getWeight());
+        return sprintf('Value: %s, Weight: %s, Picked: %s', $this->getValue(), $this->getWeight(), $this->isPicked() ? 'Yes' : 'No');
     }
 
     public function isEqual(\Charlie\Gene\GeneInterface $gene): bool

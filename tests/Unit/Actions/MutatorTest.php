@@ -50,7 +50,7 @@ class MutatorTest extends TestCase
         $mutator = new Mutator($mockedRandomizer);
         $mutatedChromosome = $mutator->mutate($inputChromosome);
 
-        $this->assertEquals('1110000000', (string) $mutatedChromosome);
+        $this->assertEquals('1|1|1|0|0|0|0|0|0|0', (string) $mutatedChromosome);
     }
 
 }

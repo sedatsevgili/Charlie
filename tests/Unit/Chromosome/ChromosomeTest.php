@@ -28,7 +28,7 @@ class ChromosomeTest extends TestCase
 
         $chromosome->setGene(1, ((new ByteGene())->set(true)));
         $this->assertEquals(2, $chromosome->getLength());
-        $this->assertEquals('01', (string) $chromosome);
+        $this->assertEquals('0|1', (string) $chromosome);
 
     }
 

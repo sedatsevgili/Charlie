@@ -68,7 +68,7 @@ class IndividualTest extends TestCase
 
         $individual->mutate(new Mutator($mtRandomizer));
 
-        $this->assertEquals('0010', (string) $individual);
+        $this->assertEquals('0|0|1|0', (string) $individual);
     }
 
     public function testToString()
@@ -78,7 +78,7 @@ class IndividualTest extends TestCase
             (new ByteGene())->set(1),
         ]));
 
-        $this->assertEquals('01', (string) $individual);
+        $this->assertEquals('0|1', (string) $individual);
     }
 
     public function testGetChromosome()
